@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Your Ad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: beige;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            background-color: #ffffff; /* White background for the box */
+            border: 1px solid #d0d8e1; /* Light gray border */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px; /* Inner padding for spacing */
+            margin-bottom: 20px; /* Spacing between sections */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        .box h2 {
+            margin-top: 0;
+            color: #34495e; /* Deep gray for headings */
+            font-size: 1.2rem;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            background-color: #f9fbfd; /* Light background for inputs */
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        .char-counter {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: right;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .upload-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .upload-section input {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Post Your Ad</h1>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <!-- Book Category Section -->
+            <div class="box">
+                <h2>Book Category</h2>
+                <select name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="fiction">Computer Science</option>
+                    <option value="non-fiction">Cloud Computing</option>
+                    <option value="textbook">Business Communication</option>
+                    <option value="comics">C++/Java Programming</option>
+                    <option value="other">Python Programming</option>
+                    <option value="">Applied Chemistry</option>
+                    <option value="fiction">Management and Humanities</option>
+                    <option value="non-fiction">Quantum Mechanics</option>
+                    <option value="textbook">Engineering Mathematics</option>
+                    <option value="comics">Software Engineering</option>
+                    <option value="other">Cybersecurity</option>
+                </select>
+            </div>
+
+            <!-- Include Some Details Section -->
+            <div class="box">
+                <h2>Include Some Details</h2>
+                <label for="ad-title">Ad Title *</label>
+                <input type="text" id="ad-title" name="ad-title" maxlength="70" placeholder="Mention the key features of your item (e.g. brand, model, age, type)" required>
+                <span class="char-counter" id="title-counter">0 / 70</span>
+                <br>
+
+                <label for="description">Description *</label>
+                <textarea id="description" name="description" minlength="10" maxlength="4096" placeholder="A minimum length of 10 characters is required." required></textarea>
+                <span class="char-counter" id="desc-counter">0 / 4096</span>
+            </div>
+
+            <!-- Set a Price Section -->
+            <div class="box">
+                <h2>Set a Price</h2>
+                <label for="price">Price *</label>
+                <input type="number" id="price" name="price" placeholder="Enter the price (e.g. 500)" required>
+            </div>
+
+            <!-- Upload Photos Section -->
+            <div class="box">
+                <h2>Upload up to 3 Photos</h2>
+                <div class="upload-section">
+                    <input type="file" id="photo1" name="photo1" accept="image/*">
+                    <input type="file" id="photo2" name="photo2" accept="image/*">
+                    <input type="file" id="photo3" name="photo3" accept="image/*">
+                </div>
+            </div>
+
+            <!-- Confirm Location Section -->
+            <div class="box">
+                <h2>Confirm Your Location</h2>
+                <input type="text" name="location" placeholder="Enter your city or location" required>
+            </div>
+
+            <!-- Review Your Details Section -->
+            <div class="box">
+                <h2>Review Your Details</h2>
+                <textarea name="notes" placeholder="Any additional information or notes (optional)"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Post</button>
+        </form>
+    </div>
+
+    <script>
+        // Character counter functionality
+        const adTitle = document.getElementById('ad-title');
+        const description = document.getElementById('description');
+        const titleCounter = document.getElementById('title-counter');
+        const descCounter = document.getElementById('desc-counter');
+
+        adTitle.addEventListener('input', () => {
+            titleCounter.textContent = `${adTitle.value.length} / 70`;
+        });
+
+        description.addEventListener('input', () => {
+            descCounter.textContent = `${description.value.length} / 4096`;
+        });
+    </script>
+</body>
+</html>

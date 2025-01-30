@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Post Your Ad
+{% endblock %}
+
+{% block body %}
+  {% if messages %}
+    <div>
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+          <strong>{{ message }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="container my-5">
+    <div class="mx-auto" style="max-width: 800px;">
+      <div class="p-4 bg-white rounded shadow">
+        <h1 class="text-center mb-4">Post Your Ad</h1>
+        <form method="post" action="/sell" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- Book Category Section -->
+          <div class="mb-4">
+            <h2 class="h5 mb-3">Book Category</h2>
+            <input type="text" class="form-control" id="product_category" name="product_category" placeholder="Enter book category" required />
+          </div>
+
+          <!-- Include Some Details Section -->
+          <div class="mb-4">
+            <h2 class="h5 mb-3">Include Some Details</h2>
+            <div class="mb-3">
+              <label for="title" class="form-label">Book Title *</label>
+              <input type="text" class="form-control" id="title" name="title" maxlength="70" placeholder="Mention the key features of your item (e.g. brand, model, age, type)" required />
+              <small class="form-text text-muted" id="title-counter">0 / 70</small>
+            </div>
+            <div>
+              <label for="desc" class="form-label">Description about condition of book *</label>
+              <textarea class="form-control" id="desc" name="desc" minlength="10" maxlength="4096" rows="4" placeholder="A minimum length of 10 characters is required." required></textarea>
+              <small class="form-text text-muted" id="desc-counter">0 / 4096</small>
+            </div>
+          </div>
+
+          <!-- Set a Price Section -->
+          <div class="mb-4">
+            <h2 class="h5 mb-3">Set a Price</h2>
+            <label for="price" class="form-label">Price *</label>
+            <input type="number" class="form-control" id="price" name="price" placeholder="Enter the price (e.g. 500)" required />
+          </div>
+
+          <!-- Upload Photos Section -->
+          <div class="mb-4">
+            <h2 class="h5 mb-3">Upload up to 3 Photos</h2>
+            <div class="d-flex flex-wrap gap-2">
+              <input type="file" class="form-control" id="image1" name="image1" accept="image/*" />
+              <input type="file" class="form-control" id="image2" name="image2" accept="image/*" />
+              <input type="file" class="form-control" id="image3" name="image3" accept="image/*" />
+            </div>
+          </div>
+
+          <!-- Phone Number Section -->
+          <div class="mb-4">
+            <h2 class="h5 mb-3">Contact Information</h2>
+            <label for="phone" class="form-label">Phone Number *</label>
+            <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter your mobile number" required />
+          </div>
+
+          <!-- Confirm Location Section -->
+          <div class="mb-4">
+            <h2 class="h5 mb-3">Confirm Your Location</h2>
+            <input type="text" class="form-control" id="location" name="location" placeholder="Enter your city or location" required />
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
